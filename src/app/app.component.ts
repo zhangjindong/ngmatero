@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { PreloaderService, SettingsService } from '@core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  title = 'ngmatero';
+export class AppComponent implements OnInit, AfterViewInit {
+  constructor(private preloader: PreloaderService, private settingService: SettingsService) {}
+
+  ngOnInit() {
+    //this.settingService.setLayout({ showHeader: false });
+  }
+
+  ngAfterViewInit() {
+    this.preloader.hide();
+  }
 }
